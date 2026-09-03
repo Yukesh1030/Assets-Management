@@ -71,14 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let panels = gsap.utils.toArray(".strategy-panel");
         
         gsap.to(panels, {
-            xPercent: -100 * (panels.length - 1),
+            x: () => -(s2Content.scrollWidth - window.innerWidth),
             ease: "none",
             scrollTrigger: {
                 trigger: ".s2-horizontal",
                 pin: true,
                 scrub: 1,
-                snap: 1 / (panels.length - 1),
-                end: () => "+=" + document.querySelector(".s2-content").offsetWidth
+                end: () => "+=" + (s2Content.scrollWidth - window.innerWidth)
             }
         });
     }
