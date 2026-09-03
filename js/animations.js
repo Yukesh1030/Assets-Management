@@ -20,12 +20,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
         masterTl.fromTo('.navbar', { y: -100, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, "-=0.5")
-                .fromTo('.hero-bg', { scale: 1.15, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }, "-=1")
-                .to('.hero-eyebrow', { opacity: 1, duration: 0.5 }, "-=0.5")
-                .to('.hero-text-line', { opacity: 1, y: 0, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 0.8, stagger: 0.2, ease: 'power3.out' }, "-=0.2")
-                .to('.hero-desc', { opacity: 1, duration: 0.5 }, "-=0.2")
-                .to('.hero-cta', { opacity: 1, duration: 0.5 }, "-=0.2")
-                .to('.floating-card', { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.2");
+                .fromTo('.hero-bg', { scale: 1.15, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5, ease: 'power2.out' }, "-=1");
+                
+        // Index page text reveals
+        if (document.querySelector('.hero-text-line')) {
+            masterTl.to('.hero-eyebrow', { opacity: 1, duration: 0.5 }, "-=0.5")
+                    .to('.hero-text-line', { opacity: 1, y: 0, clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', duration: 0.8, stagger: 0.2, ease: 'power3.out' }, "-=0.2")
+                    .to('.hero-desc', { opacity: 1, duration: 0.5 }, "-=0.2")
+                    .to('.hero-cta', { opacity: 1, duration: 0.5 }, "-=0.2")
+                    .to('.floating-card', { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.2");
+        }
+        
+        // Subpages (About, Strategies, Insights, Contact)
+        if (document.querySelector('.hero-headline')) {
+            masterTl.fromTo('.hero-headline', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, "-=0.5")
+                    .fromTo('.hero-supporting', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, "-=0.4");
+        }
 
         // Animate Hero Graph line
         const graphPath = document.querySelector('.graph-path');
