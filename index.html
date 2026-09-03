@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STACKLY | Invest With Perspective</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="STACKLY combines disciplined investment strategies, intelligent risk management, and long-term thinking to help preserve and grow capital.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        /* Specific Styles for index.html */
+        .hero-graph {
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+            width: 400px;
+            height: 200px;
+            z-index: 1;
+        }
+        
+        .floating-card {
+            background: rgba(247, 245, 239, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(198, 161, 91, 0.3);
+            padding: 24px;
+            border-radius: 8px;
+            color: var(--secondary-color);
+            position: absolute;
+        }
+        
+        .card-1 { top: 20%; right: 15%; }
+        .card-2 { bottom: 30%; right: 25%; }
+        
+        /* Section 01 */
+        .s1-pillars {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 64px;
+        }
+        .pillar {
+            border-top: 1px solid var(--accent-color);
+            padding-top: 24px;
+        }
+        
+        /* Section 02 - Horizontal Scroll */
+        .s2-horizontal {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .s2-content {
+            display: flex;
+            width: 500vw; /* 5 sections */
+            height: 100%;
+        }
+        
+        .strategy-panel {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            flex-shrink: 0;
+        }
+        
+        .strategy-text {
+            flex: 1;
+        }
+        
+        .strategy-text h2 {
+            font-size: 72px;
+            margin-bottom: 24px;
+            color: var(--accent-color);
+        }
+        
+        .strategy-visual {
+            flex: 1;
+            height: 60%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+        }
+        
+        /* Section 03 - Process */
+        .process-line {
+            height: 2px;
+            background-color: rgba(18, 60, 53, 0.1);
+            position: relative;
+            margin: 80px 0;
+        }
+        .process-line-active {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: var(--accent-color);
+            width: 0;
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+        }
+        .step {
+            text-align: center;
+            width: 15%;
+        }
+        .step-num {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--primary-color);
+            transition: all 0.5s ease;
+        }
+        .step.active .step-num {
+            color: var(--primary-color);
+            -webkit-text-stroke: 0px;
+        }
+        
+        /* Section 04 - Global */
+        .map-container {
+            position: relative;
+            height: 600px;
+            background: url('assets/Projects.webp') center/cover;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .map-overlay {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background-color: rgba(18, 60, 53, 0.85);
+        }
+        .marker {
+            position: absolute;
+            width: 12px; height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(198, 161, 91, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(198, 161, 91, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(198, 161, 91, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(198, 161, 91, 0); }
+        }
+        
+        /* Section 05 - Performance */
+        .performance-graph {
+            height: 400px;
+            border-bottom: 1px solid var(--primary-color);
+            border-left: 1px solid var(--primary-color);
+            position: relative;
+            margin-top: 40px;
+        }
+        .perf-line {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .perf-line path {
+            stroke: var(--accent-color);
+            stroke-width: 4;
+            fill: none;
+            stroke-dasharray: 2000;
+            stroke-dashoffset: 2000;
+        }
+        
+        /* Section 06 - Risk */
+        .risk-split {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        .risk-img {
+            flex: 1;
+            height: 600px;
+            background: url('assets/coverr-image-About.webp') center/cover;
+        }
+        .risk-content {
+            flex: 1;
+        }
+        .risk-layer {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(18, 60, 53, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .risk-layer:hover {
+            padding-left: 20px;
+            border-bottom-color: var(--accent-color);
+        }
+        .risk-layer h4 {
+            font-family: var(--font-body);
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        .risk-layer p {
+            display: none;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .risk-layer:hover p {
+            display: block;
+        }
+        
+        /* Section 07 - Intelligence */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+        .dash-card {
+            background-color: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .dash-card.wide {
+            grid-column: span 2;
+        }
+        
+        /* Section 08 - Insights */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .insight-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        .insight-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .insight-card:hover img {
+            transform: scale(1.05);
+        }
+        .insight-card .content {
+            padding: 24px 0;
+        }
+        
+        /* Section 09 - Trust */
+        .trust-section {
+            background-color: var(--secondary-color);
+            transition: background-color 1s ease;
+        }
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+        
+        /* Section 10 - Final CTA */
+        .final-cta {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .final-cta h2 {
+            font-size: 72px;
+            margin-bottom: 24px;
+        }
+        .cta-line {
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-color);
+            margin: 40px auto;
+        }
+        
+        /* GSAP Initial States */
+        .gsap-reveal { opacity: 0; transform: translateY(30px); }
+        .hero-text-line { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); opacity: 0; transform: translateY(50px); }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <img src="assets/Brand-logo.webp" alt="STACKLY" class="preloader-brand">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="About.html" class="nav-link">About</a></li>
+                <li><a href="Strategies.html" class="nav-link">Strategies</a></li>
+                <li><a href="Insights.html" class="nav-link">Insights</a></li>
+                <li><a href="Contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <a href="Login.html" class="btn btn-gold nav-login-btn">Investor Login</a>
+            
+            <div class="mobile-menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <ul class="mobile-menu-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Strategies.html">Strategies</a></li>
+            <li><a href="Insights.html">Insights</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Login.html" class="text-gold">Login</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" style="background-image: url('assets/cover-image-index.webp');"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <p class="label-text text-gold hero-eyebrow" style="opacity: 0;">Global Portfolio Management</p>
+                
+                <h1 class="hero-headline">
+                    <div class="hero-text-line">Capital, Managed</div>
+                    <div class="hero-text-line">With Conviction.</div>
+                </h1>
+                
+                <p class="hero-supporting hero-desc" style="opacity: 0;">
+                    STACKLY combines disciplined investment strategies, intelligent risk management, and long-term thinking to help preserve and grow capital.
+                </p>
+                
+                <div class="flex gap-4 mt-8 hero-cta" style="opacity: 0; margin-top: 32px;">
+                    <a href="Strategies.html" class="btn btn-gold">Explore Our Strategies</a>
+                    <a href="Login.html" class="btn btn-outline" style="border-color: #F7F5EF; color: #F7F5EF;">Investor Login</a>
+                </div>
+            </div>
+            
+            <!-- Hero Data Cards -->
+            <div class="floating-card card-1" style="opacity: 0;">
+                <p class="label-text">Global Portfolio</p>
+                <div class="dashboard-num">+12.84%</div>
+                <div class="flex-col gap-2 mt-4" style="font-size: 14px;">
+                    <div class="flex justify-between"><span>Equities</span> <span class="text-gold">45%</span></div>
+                    <div class="flex justify-between"><span>Bonds</span> <span class="text-gold">30%</span></div>
+                    <div class="flex justify-between"><span>Alternatives</span> <span class="text-gold">25%</span></div>
+                </div>
+            </div>
+            
+            <svg class="hero-graph" viewBox="0 0 400 200" preserveAspectRatio="none">
+                <path d="M0,150 C50,150 80,100 130,120 C180,140 220,50 280,70 C340,90 380,20 400,20" 
+                      fill="none" stroke="#C6A15B" stroke-width="2" class="graph-path" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- SECTION 01 - THE STACKLY DIFFERENCE -->
+    <section class="section" id="difference">
+        <div class="container">
+            <h2 class="gsap-reveal">A More Considered <br>Approach to Capital</h2>
+            <div class="s1-pillars">
+                <div class="pillar gsap-reveal">
+                    <h3>Discipline</h3>
+                    <p class="mt-4">Decisions grounded in rigorous research and repeatable process, avoiding emotional market reactions.</p>
+                </div>
+                <div class="pillar gsap-reveal">
+                    <h3>Perspective</h3>
+                    <p class="mt-4">Long-term thinking beyond standard market cycles. We build portfolios for decades, not quarters.</p>
+                </div>
+                <div class="pillar gsap-reveal">
+                    <h3>Alignment</h3>
+                    <p class="mt-4">Strategies designed strictly around investor objectives, ensuring our goals match yours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 02 - ASSET STRATEGIES -->
+    <section class="s2-horizontal" id="strategies-horizontal">
+        <div class="s2-content">
+            <!-- Panel 1 -->
+            <div class="strategy-panel">
+                <div class="strategy-text">
+                    <p class="label-text">01</p>
+                    <h2>Public Equities</h2>
+                    <p class="feature-text">High-conviction portfolios focused on quality businesses with durable competitive advantages and strong capital allocation.</p>
+                    <a href="Strategies.html" class="btn btn-outline" style="border-color: #F7F5EF; color: #F7F5EF; margin-top: 32px;">Explore Equities</a>
+                </div>
+                <div class="strategy-visual" style="background-image: url('assets/cover-image-index.webp');"></div>
+            </div>
+            <!-- Panel 2 -->
+            <div class="strategy-panel">
+                <div class="strategy-text">
+                    <p class="label-text">02</p>
+                    <h2>Fixed Income</h2>
+                    <p class="feature-text">Active duration and credit management seeking to provide steady income and capital preservation across environments.</p>
+                </div>
+                <div class="strategy-visual" style="background-image: url('assets/Assest-Allocations.webp');"></div>
+            </div>
+            <!-- Panel 3 -->
+            <div class="strategy-panel">
+                <div class="strategy-text">
+                    <p class="label-text">03</p>
+                    <h2>Private Markets</h2>
+                    <p class="feature-text">Direct investments in private equity and credit, capturing illiquidity premiums and partnering with exceptional operators.</p>
+                </div>
+                <div class="strategy-visual" style="background-image: url('assets/Projects.webp');"></div>
+            </div>
+            <!-- Panel 4 -->
+            <div class="strategy-panel">
+                <div class="strategy-text">
+                    <p class="label-text">04</p>
+                    <h2>Real Assets</h2>
+                    <p class="feature-text">Exposure to infrastructure, real estate, and commodities designed to provide inflation protection and yield.</p>
+                </div>
+                <div class="strategy-visual" style="background-image: url('assets/land-assets-management.webp');"></div>
+            </div>
+            <!-- Panel 5 -->
+            <div class="strategy-panel">
+                <div class="strategy-text">
+                    <p class="label-text">05</p>
+                    <h2>Alternatives</h2>
+                    <p class="feature-text">Absolute return strategies seeking uncorrelated alpha to diversify traditional stock and bond portfolios.</p>
+                </div>
+                <div class="strategy-visual" style="background-image: url('assets/Gold-assest-management.webp');"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 03 - INVESTMENT PROCESS -->
+    <section class="section" id="process">
+        <div class="container">
+            <h2 class="gsap-reveal">Research Before Conviction</h2>
+            <p class="hero-supporting gsap-reveal">Our disciplined six-step process.</p>
+            
+            <div class="process-line">
+                <div class="process-line-active"></div>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h4>Discover</h4>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h4>Research</h4>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h4>Evaluate</h4>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <h4>Construct</h4>
+                </div>
+                <div class="step">
+                    <div class="step-num">05</div>
+                    <h4>Monitor</h4>
+                </div>
+                <div class="step">
+                    <div class="step-num">06</div>
+                    <h4>Adapt</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 04 - GLOBAL PERSPECTIVE -->
+    <section class="section bg-ivory" id="global">
+        <div class="container">
+            <h2 class="gsap-reveal">Thinking Beyond a Single Market</h2>
+            
+            <div class="map-container mt-8 gsap-reveal">
+                <div class="map-overlay"></div>
+                <!-- Markers placed roughly -->
+                <div class="marker" style="top: 30%; left: 20%;" title="North America"></div>
+                <div class="marker" style="top: 25%; left: 50%;" title="Europe"></div>
+                <div class="marker" style="top: 40%; left: 75%;" title="Asia"></div>
+                <div class="marker" style="top: 45%; left: 60%;" title="Middle East"></div>
+                <div class="marker" style="top: 75%; left: 85%;" title="Australia"></div>
+                
+                <div style="position:absolute; bottom:40px; left:40px; color:#F7F5EF;">
+                    <h3>40+ Markets Analyzed</h3>
+                    <p>Global reach with local insight.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 05 - PERFORMANCE -->
+    <section class="section" id="performance">
+        <div class="container">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="gsap-reveal">Performance Measured Over Time</h2>
+                    <p class="gsap-reveal">Focusing on long-term compound growth.</p>
+                </div>
+                <div class="text-right gsap-reveal">
+                    <div class="dashboard-num count-up" data-target="12.84">0.00</div>
+                    <p class="text-gold">% Portfolio Growth</p>
+                </div>
+            </div>
+            
+            <div class="performance-graph gsap-reveal">
+                <svg class="perf-line" viewBox="0 0 1000 400" preserveAspectRatio="none">
+                    <path id="perf-path" d="M0,350 Q100,300 200,320 T400,200 T600,150 T800,100 T1000,20" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 06 - RISK MANAGEMENT -->
+    <section class="section" id="risk">
+        <div class="container risk-split">
+            <div class="risk-img gsap-reveal"></div>
+            <div class="risk-content">
+                <h2 class="gsap-reveal">Protecting Capital Is Part of Growing It</h2>
+                <div class="mt-8">
+                    <div class="risk-layer gsap-reveal">
+                        <h4>Market Risk</h4>
+                        <p>Continuous monitoring of beta exposure and macro correlations.</p>
+                    </div>
+                    <div class="risk-layer gsap-reveal">
+                        <h4>Liquidity Risk</h4>
+                        <p>Ensuring portfolios can meet capital requirements across environments.</p>
+                    </div>
+                    <div class="risk-layer gsap-reveal">
+                        <h4>Credit Risk</h4>
+                        <p>Deep fundamental analysis of counterparty and issuer health.</p>
+                    </div>
+                    <div class="risk-layer gsap-reveal">
+                        <h4>Concentration Risk</h4>
+                        <p>Intentional diversification to prevent isolated event impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 07 - INVESTMENT INTELLIGENCE -->
+    <section class="section" style="background-color: #E8E5DA;" id="intelligence">
+        <div class="container">
+            <h2 class="gsap-reveal">Data Becomes Insight When Context Matters</h2>
+            
+            <div class="dashboard-grid">
+                <div class="dash-card wide gsap-reveal">
+                    <h4>Portfolio Allocation</h4>
+                    <div style="height: 20px; background: #eee; border-radius: 10px; margin-top: 16px; overflow: hidden; display: flex;">
+                        <div style="width: 45%; background: var(--primary-color);"></div>
+                        <div style="width: 30%; background: var(--accent-color);"></div>
+                        <div style="width: 25%; background: #333;"></div>
+                    </div>
+                    <div class="flex justify-between mt-4 label-text">
+                        <span>Equities 45%</span>
+                        <span>Fixed 30%</span>
+                        <span>Alts 25%</span>
+                    </div>
+                </div>
+                <div class="dash-card gsap-reveal">
+                    <h4>Risk Score</h4>
+                    <div class="dashboard-num mt-4">A-</div>
+                    <p class="label-text mt-2">Optimized</p>
+                </div>
+                <div class="dash-card gsap-reveal">
+                    <h4>Liquidity</h4>
+                    <div class="dashboard-num mt-4">72%</div>
+                    <p class="label-text mt-2">Highly Liquid</p>
+                </div>
+                <div class="dash-card wide gsap-reveal">
+                    <h4>Market Outlook</h4>
+                    <p class="mt-4">Our quantitative models suggest a moderate inflationary environment, shifting our bias slightly towards real assets and value equities over the next 12 months.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 08 - INSIGHTS -->
+    <section class="section" id="insights">
+        <div class="container">
+            <div class="flex justify-between items-center gsap-reveal">
+                <h2>Ideas Worth Thinking About</h2>
+                <a href="Insights.html" class="btn btn-outline">View All Insights</a>
+            </div>
+            
+            <div class="insights-grid">
+                <div class="insight-card gsap-reveal">
+                    <img src="assets/Assest-related-consuling.webp" alt="Insight 1">
+                    <div class="content">
+                        <p class="label-text text-gold">Market Perspective</p>
+                        <h3 class="mt-2">Understanding today's market environment</h3>
+                    </div>
+                </div>
+                <div class="flex-col gap-8">
+                    <div class="insight-card gsap-reveal">
+                        <p class="label-text text-gold">Long-Term Investing</p>
+                        <h4 class="mt-2" style="font-family: var(--font-heading); font-size: 24px;">Why time matters more than timing.</h4>
+                        <p class="mt-2" style="font-size: 14px;">The mathematical advantage of staying invested.</p>
+                    </div>
+                    <div class="insight-card gsap-reveal">
+                        <p class="label-text text-gold">Risk & Resilience</p>
+                        <h4 class="mt-2" style="font-family: var(--font-heading); font-size: 24px;">Building portfolios designed for uncertainty.</h4>
+                        <p class="mt-2" style="font-size: 14px;">Strategies to weather volatility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 09 - TRUST & PARTNERSHIP -->
+    <section class="section trust-section" id="trust">
+        <div class="container">
+            <h2 class="text-center gsap-reveal" style="margin-bottom: 64px;">Built on Long-Term Relationships</h2>
+            
+            <div class="trust-grid">
+                <div class="gsap-reveal">
+                    <div class="dashboard-num count-up" data-target="25">0</div>
+                    <p class="mt-2 font-weight-500">Years of Experience</p>
+                </div>
+                <div class="gsap-reveal">
+                    <div class="dashboard-num count-up" data-target="40">0</div>
+                    <p class="mt-2 font-weight-500">Markets</p>
+                </div>
+                <div class="gsap-reveal">
+                    <div class="dashboard-num count-up" data-target="15">0</div>
+                    <p class="mt-2 font-weight-500">Investment Strategies</p>
+                </div>
+                <div class="gsap-reveal">
+                    <div class="dashboard-num count-up" data-target="98">0</div>
+                    <p class="mt-2 font-weight-500">% Client Retention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10 - FINAL CTA -->
+    <section class="section final-cta" id="cta">
+        <div class="container">
+            <h2 class="cta-text gsap-reveal">Let's Build What Comes Next.</h2>
+            <p class="hero-supporting gsap-reveal" style="max-width: 600px; margin: 0 auto;">
+                A disciplined approach to managing capital today and creating possibilities for tomorrow.
+            </p>
+            <div class="cta-line"></div>
+            <div class="flex justify-center gap-4 gsap-reveal">
+                <a href="Strategies.html" class="btn btn-gold">Explore Strategies</a>
+                <a href="Contact.html" class="btn btn-outline" style="border-color: #F7F5EF; color: #F7F5EF;">Contact STACKLY</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/Brand-logo.webp" alt="STACKLY">
+                    <p>Disciplined capital management for the long term.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="About.html">About</a></li>
+                        <li><a href="Strategies.html">Strategies</a></li>
+                        <li><a href="Insights.html">Insights</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Strategies</h4>
+                    <ul>
+                        <li><a href="404.html">Public Equities</a></li>
+                        <li><a href="404.html">Fixed Income</a></li>
+                        <li><a href="404.html">Private Markets</a></li>
+                        <li><a href="404.html">Real Assets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Regulatory Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Asset Management. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP & Lenis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

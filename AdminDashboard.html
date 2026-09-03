@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-brand {
+            margin-bottom: 48px;
+        }
+        .sidebar-brand img {
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .nav-items {
+            list-style: none;
+            flex: 1;
+        }
+        .nav-items li {
+            margin-bottom: 8px;
+        }
+        .nav-items a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: rgba(247, 245, 239, 0.7);
+            transition: all 0.3s;
+        }
+        .nav-items a:hover, .nav-items a.active {
+            background-color: rgba(247, 245, 239, 0.1);
+            color: var(--accent-color);
+        }
+        
+        .main-content {
+            flex: 1;
+            background-color: #F0EEE9;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        
+        .table-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            font-size: 13px;
+            color: #777;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+            </div>
+            
+            <ul class="nav-items">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="404.html"><i class="fas fa-users"></i> Clients</a></li>
+                <li><a href="404.html"><i class="fas fa-chart-pie"></i> Portfolios</a></li>
+                <li><a href="404.html"><i class="fas fa-file-invoice-dollar"></i> Transactions</a></li>
+                <li><a href="404.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="404.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div class="mt-auto">
+                <a href="index.html" style="color: rgba(247, 245, 239, 0.7); display: flex; align-items: center; gap: 12px; padding: 12px 16px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="top-header">
+                <div>
+                    <h2>Admin Overview</h2>
+                    <p class="text-forest mt-2">Welcome back, System Administrator</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-plus mr-2"></i> New Account</button>
+                </div>
+            </div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <p class="label-text">Total AUM</p>
+                    <h3 class="mt-2 text-gold">$4.2B</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #4CAF50;"><i class="fas fa-arrow-up"></i> 1.2% this month</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label-text">Active Clients</p>
+                    <h3 class="mt-2 text-forest">1,248</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #4CAF50;"><i class="fas fa-arrow-up"></i> 12 new</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label-text">Pending Transactions</p>
+                    <h3 class="mt-2 text-forest">42</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #777;">Requires approval</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label-text">System Status</p>
+                    <h3 class="mt-2" style="color: #4CAF50;">Online</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #777;">All services operational</p>
+                </div>
+            </div>
+            
+            <div class="table-card">
+                <h3>Recent Activity</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client ID</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CL-8890</td>
+                            <td>Acme Corp Pension</td>
+                            <td>Capital Call</td>
+                            <td>Today, 09:41 AM</td>
+                            <td><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>CL-7412</td>
+                            <td>Smith Family Trust</td>
+                            <td>Rebalancing</td>
+                            <td>Yesterday, 14:30 PM</td>
+                            <td><span style="background: #fff3e0; color: #ef6c00; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Processing</span></td>
+                        </tr>
+                        <tr>
+                            <td>CL-9921</td>
+                            <td>Global Foundation</td>
+                            <td>Wire Transfer</td>
+                            <td>Sep 01, 10:15 AM</td>
+                            <td><span style="background: #e8f5e9; color: #2e7d32; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

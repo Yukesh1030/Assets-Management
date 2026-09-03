@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #e5e7e9 40%, #e0f2f1 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .top-bar {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            right: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .back-link {
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .brand-logo {
+            height: 30px;
+            filter: brightness(0); /* Black logo */
+        }
+        
+        .auth-card {
+            background: #fff;
+            padding: 48px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            /* GSAP initial state */
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .auth-card h2 {
+            font-size: 32px;
+            font-weight: 700;
+            font-family: var(--font-body);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        .auth-card p {
+            text-align: center;
+            color: #777;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fafafa;
+        }
+        
+        .input-wrapper i {
+            padding: 0 16px;
+            color: #888;
+        }
+        
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 14px 14px 14px 0;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 14px;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 14px;
+            border-radius: 6px;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .auth-btn:hover { background: #333; }
+        
+        .footer-text {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 13px;
+            color: #666;
+        }
+        .footer-text a {
+            color: #000;
+            font-weight: 700;
+        }
+        
+        .error-msg {
+            color: #d9534f;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+        .has-error .input-wrapper { border-color: #d9534f; }
+        .has-error .error-msg { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <img src="assets/Brand-logo.webp" alt="STACKLY" class="brand-logo">
+    </div>
+
+    <div class="auth-card" id="authCard">
+        <h2>Welcome Back</h2>
+        <p>Sign in to your account</p>
+        
+        <form onsubmit="handleLoginSubmit(event)">
+            <div class="form-group" id="group-type">
+                <label>Login As</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <select id="login-type">
+                        <option value="Client">Client</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group" id="group-email">
+                <label>Email Address</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="login-email" placeholder="user@example.com">
+                </div>
+                <div class="error-msg">Please enter a valid email.</div>
+            </div>
+            
+            <div class="form-group" id="group-pass">
+                <label>
+                    Password
+                    <a href="404.html" style="color: #4CAF50; font-weight: 600;">Forgot password?</a>
+                </label>
+                <div class="input-wrapper">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" placeholder="••••••••">
+                    <i class="fas fa-eye" style="cursor: pointer; border-left: 1px solid #ddd; padding-left: 16px;"></i>
+                </div>
+                <div class="error-msg">Please enter your password.</div>
+            </div>
+            
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+        
+        <div class="footer-text">
+            Don't have an account? <a href="Signup.html">Create an account</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.to('#authCard', { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+        }
+        
+        .contact-info-card {
+            background-color: var(--secondary-color);
+            padding: 32px;
+            border-radius: 4px;
+            border-left: 2px solid var(--accent-color);
+            margin-bottom: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(18, 60, 53, 0.2);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            background: transparent;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .error-msg {
+            color: #d9534f;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+        .has-error input, .has-error select, .has-error textarea {
+            border-color: #d9534f;
+        }
+        .has-error .error-msg {
+            display: block;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(18, 60, 53, 0.1);
+            padding: 24px 0;
+            cursor: pointer;
+        }
+        .faq-item h4 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-answer {
+            display: none;
+            margin-top: 16px;
+            color: rgba(18, 60, 53, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="About.html" class="nav-link">About</a></li>
+                <li><a href="Strategies.html" class="nav-link">Strategies</a></li>
+                <li><a href="Insights.html" class="nav-link">Insights</a></li>
+                <li><a href="Contact.html" class="nav-link active">Contact</a></li>
+            </ul>
+            
+            <a href="Login.html" class="btn btn-gold nav-login-btn">Investor Login</a>
+            
+            <div class="mobile-menu-btn">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="mobile-menu-overlay">
+        <ul class="mobile-menu-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Strategies.html">Strategies</a></li>
+            <li><a href="Insights.html">Insights</a></li>
+            <li><a href="Contact.html">Contact</a></li>
+            <li><a href="Login.html" class="text-gold">Login</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg" style="background-image: url('assets/cover-image-contact.webp');"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container">
+            <div class="hero-content mx-auto text-center" style="margin: 0 auto;">
+                <h1 class="hero-headline">Let's Talk About Your Capital</h1>
+                <p class="hero-supporting mt-4">Connect with our advisory team to explore how STACKLY can align with your long-term objectives.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 01 & 02 - CONTACT INFO & FORM -->
+    <section class="section">
+        <div class="container contact-grid">
+            <div class="contact-info gsap-reveal">
+                <div class="contact-info-card hover-lift">
+                    <p class="label-text text-gold">General Inquiry</p>
+                    <h3 class="mt-2" style="font-size: 20px;">info@stackly.com</h3>
+                    <p class="mt-2" style="font-size: 14px;">+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-info-card hover-lift">
+                    <p class="label-text text-gold">Investor Relations</p>
+                    <h3 class="mt-2" style="font-size: 20px;">ir@stackly.com</h3>
+                    <p class="mt-2" style="font-size: 14px;">+1 (555) 123-4568</p>
+                </div>
+                <div class="contact-info-card hover-lift">
+                    <p class="label-text text-gold">Institutional Services</p>
+                    <h3 class="mt-2" style="font-size: 20px;">institutional@stackly.com</h3>
+                    <p class="mt-2" style="font-size: 14px;">+1 (555) 123-4569</p>
+                </div>
+                <div class="contact-info-card hover-lift">
+                    <p class="label-text text-gold">Partnerships</p>
+                    <h3 class="mt-2" style="font-size: 20px;">partners@stackly.com</h3>
+                </div>
+            </div>
+            
+            <div class="contact-form gsap-reveal" style="background: #fff; padding: 48px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+                <h2 style="font-size: 32px; margin-bottom: 32px;">Send a Message</h2>
+                <form id="contactForm" onsubmit="handleContactSubmit(event)">
+                    <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="form-group" id="group-name">
+                            <label>Full Name</label>
+                            <input type="text" id="contact-name" placeholder="John Doe">
+                            <div class="error-msg">Please enter your name.</div>
+                        </div>
+                        <div class="form-group" id="group-email">
+                            <label>Email Address</label>
+                            <input type="email" id="contact-email" placeholder="john@example.com">
+                            <div class="error-msg">Please enter a valid email.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div class="form-group" id="group-phone">
+                            <label>Phone Number</label>
+                            <input type="tel" id="contact-phone" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group" id="group-company">
+                            <label>Company</label>
+                            <input type="text" id="contact-company" placeholder="Organization Name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="group-type">
+                        <label>Inquiry Type</label>
+                        <select id="contact-type">
+                            <option value="">Select an option</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="investor">Investor Relations</option>
+                            <option value="institutional">Institutional Services</option>
+                        </select>
+                        <div class="error-msg">Please select an inquiry type.</div>
+                    </div>
+                    
+                    <div class="form-group" id="group-message">
+                        <label>Message</label>
+                        <textarea id="contact-message" rows="5" placeholder="How can we help you?"></textarea>
+                        <div class="error-msg">Please enter a message.</div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 & 04 - INVESTOR & INSTITUTIONAL INFO -->
+    <section class="section" style="background-color: var(--primary-color); color: var(--secondary-color);">
+        <div class="container grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+            <div class="gsap-reveal">
+                <h2>Investor Relations</h2>
+                <p class="mt-4">Our dedicated investor relations team provides absolute transparency and detailed reporting on portfolio positioning, performance attribution, and macro outlook.</p>
+                <a href="Login.html" class="btn btn-outline mt-8" style="border-color:#F7F5EF; color:#F7F5EF;">Access Portal</a>
+            </div>
+            <div class="gsap-reveal">
+                <h2>Institutional Services</h2>
+                <p class="mt-4">We partner with pensions, endowments, and sovereign wealth funds to deliver customized mandates, co-investment opportunities, and strategic advisory.</p>
+                <a href="404.html" class="btn btn-gold mt-8">View Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 - OFFICE LOCATIONS -->
+    <section class="section bg-ivory">
+        <div class="container">
+            <h2 class="text-center gsap-reveal mb-8">Global Offices</h2>
+            
+            <div class="location-grid mt-8">
+                <div class="gsap-reveal">
+                    <h3 class="text-gold">New York</h3>
+                    <p class="mt-4">Headquarters<br>100 Wall Street<br>New York, NY 10005</p>
+                </div>
+                <div class="gsap-reveal">
+                    <h3 class="text-gold">London</h3>
+                    <p class="mt-4">EMEA Office<br>25 Bank Street<br>Canary Wharf, London</p>
+                </div>
+                <div class="gsap-reveal">
+                    <h3 class="text-gold">Singapore</h3>
+                    <p class="mt-4">APAC Office<br>8 Marina View<br>Asia Square, Singapore</p>
+                </div>
+                <div class="gsap-reveal">
+                    <h3 class="text-gold">Tokyo</h3>
+                    <p class="mt-4">Japan Office<br>1-1-1 Marunouchi<br>Chiyoda-ku, Tokyo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 & 07 - AVAILABILITY & FAQ -->
+    <section class="section">
+        <div class="container grid" style="display: grid; grid-template-columns: 1fr 2fr; gap: 60px;">
+            <div class="gsap-reveal">
+                <h2>Availability</h2>
+                <p class="mt-4">Our global teams ensure continuous coverage across all major financial markets.</p>
+                <div class="mt-8">
+                    <p class="label-text text-gold">Operating Hours</p>
+                    <p class="mt-2">Monday - Friday<br>24-hour global coverage</p>
+                </div>
+            </div>
+            
+            <div class="gsap-reveal">
+                <h2>Frequently Asked Questions</h2>
+                <div class="mt-8">
+                    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display === 'block' ? 'none' : 'block'">
+                        <h4>What is the minimum investment for STACKLY funds? <i class="fas fa-chevron-down text-gold"></i></h4>
+                        <div class="faq-answer">Minimum investments vary by strategy and vehicle type. Institutional mandates typically begin at $50M, while private wealth access varies. Please contact our Investor Relations team for specifics.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display === 'block' ? 'none' : 'block'">
+                        <h4>Do you offer customized portfolio solutions? <i class="fas fa-chevron-down text-gold"></i></h4>
+                        <div class="faq-answer">Yes, we work closely with institutional partners to design bespoke portfolios that specifically address their unique liability profiles and return targets.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.querySelector('.faq-answer').style.display = this.querySelector('.faq-answer').style.display === 'block' ? 'none' : 'block'">
+                        <h4>How can I access my investor reports? <i class="fas fa-chevron-down text-gold"></i></h4>
+                        <div class="faq-answer">Existing clients can access detailed reporting, tax documents, and capital notices through our secure Investor Login portal.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 08 - FINAL CTA -->
+    <section class="section" style="border-top: 1px solid rgba(18,60,53,0.1);">
+        <div class="container text-center">
+            <h2 class="gsap-reveal">Ready to begin?</h2>
+            <div class="mt-8 gsap-reveal">
+                <a href="Login.html" class="btn btn-gold">Client Portal</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <!-- Footer Content -->
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="assets/Brand-logo.webp" alt="STACKLY">
+                    <p>Disciplined capital management for the long term.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="About.html">About</a></li>
+                        <li><a href="Strategies.html">Strategies</a></li>
+                        <li><a href="Insights.html">Insights</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Strategies</h4>
+                    <ul>
+                        <li><a href="404.html">Public Equities</a></li>
+                        <li><a href="404.html">Fixed Income</a></li>
+                        <li><a href="404.html">Private Markets</a></li>
+                        <li><a href="404.html">Real Assets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="404.html">Terms of Service</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Regulatory Disclosures</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 STACKLY Asset Management. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="404.html"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fab fa-twitter"></i></a>
+                    <a href="404.html"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--secondary-color);
+            border-right: 1px solid rgba(18, 60, 53, 0.1);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-brand {
+            margin-bottom: 48px;
+        }
+        .sidebar-brand img {
+            height: 30px;
+        }
+        
+        .nav-items {
+            list-style: none;
+            flex: 1;
+        }
+        .nav-items li {
+            margin-bottom: 8px;
+        }
+        .nav-items a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        .nav-items a:hover, .nav-items a.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .main-content {
+            flex: 1;
+            background-color: #FAFAFA;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        .portfolio-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        
+        .allocation-bar {
+            height: 12px;
+            border-radius: 6px;
+            display: flex;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+            </div>
+            
+            <ul class="nav-items">
+                <li><a href="#" class="active"><i class="fas fa-wallet"></i> My Portfolio</a></li>
+                <li><a href="404.html"><i class="fas fa-chart-line"></i> Performance</a></li>
+                <li><a href="404.html"><i class="fas fa-file-alt"></i> Documents</a></li>
+                <li><a href="404.html"><i class="fas fa-university"></i> Funding</a></li>
+                <li><a href="404.html"><i class="fas fa-envelope"></i> Advisor Messages</a></li>
+                <li><a href="404.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div class="mt-auto">
+                <a href="index.html" style="color: var(--primary-color); display: flex; align-items: center; gap: 12px; padding: 12px 16px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <div class="top-header">
+                <div>
+                    <h2>Portfolio Overview</h2>
+                    <p class="text-forest mt-2">Welcome back, John Doe</p>
+                </div>
+                <div>
+                    <a href="404.html" class="btn btn-primary"><i class="fas fa-download mr-2"></i> Monthly Statement</a>
+                </div>
+            </div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <p class="label-text">Total Balance</p>
+                    <h3 class="mt-2 text-forest" style="font-size: 36px;">$1,245,600.00</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #4CAF50;"><i class="fas fa-arrow-up"></i> +$12,450 (1.01%) Today</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label-text">YTD Return</p>
+                    <h3 class="mt-2 text-gold" style="font-size: 36px;">+8.4%</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #777;">Benchmark: +6.2%</p>
+                </div>
+                <div class="stat-card">
+                    <p class="label-text">Available Cash</p>
+                    <h3 class="mt-2 text-forest" style="font-size: 36px;">$42,100.00</h3>
+                    <p class="mt-2" style="font-size: 13px; color: #777;">Ready for deployment</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-card">
+                <h3>Asset Allocation</h3>
+                <div class="allocation-bar">
+                    <div style="width: 50%; background: var(--primary-color);" title="Equities"></div>
+                    <div style="width: 30%; background: var(--accent-color);" title="Fixed Income"></div>
+                    <div style="width: 15%; background: #999;" title="Alternatives"></div>
+                    <div style="width: 5%; background: #ccc;" title="Cash"></div>
+                </div>
+                
+                <div class="grid" style="display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 24px;">
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%;"></div>
+                            <span style="font-size: 14px; font-weight: 500;">Equities</span>
+                        </div>
+                        <p class="text-forest mt-1">50% ($622,800)</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 12px; height: 12px; background: var(--accent-color); border-radius: 50%;"></div>
+                            <span style="font-size: 14px; font-weight: 500;">Fixed Income</span>
+                        </div>
+                        <p class="text-forest mt-1">30% ($373,680)</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 12px; height: 12px; background: #999; border-radius: 50%;"></div>
+                            <span style="font-size: 14px; font-weight: 500;">Alternatives</span>
+                        </div>
+                        <p class="text-forest mt-1">15% ($186,840)</p>
+                    </div>
+                    <div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 12px; height: 12px; background: #ccc; border-radius: 50%;"></div>
+                            <span style="font-size: 14px; font-weight: 500;">Cash</span>
+                        </div>
+                        <p class="text-forest mt-1">5% ($62,280)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
