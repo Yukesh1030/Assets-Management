@@ -136,7 +136,7 @@
 </head>
 <body>
     <header class="mobile-header">
-        <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+        <a href="404.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
         <button id="hamburger"><i class="fas fa-bars"></i></button>
     </header>
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -270,6 +270,41 @@
         gsap.from('.settings-nav', { opacity:0, x:-30, duration:.6, ease:'power3.out', delay:.2 });
         gsap.from('.settings-card', { opacity:0, y:30, stagger:.15, duration:.6, ease:'power3.out', delay:.3 });
         gsap.from('.danger-zone', { opacity:0, y:30, duration:.6, ease:'power3.out', delay:.8 });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const saveBtns = document.querySelectorAll('.btn-primary, .action-btn:not(.approve-btn)');
+            saveBtns.forEach(btn => {
+                // If it's a link, we already changed href to 404.html
+                // But for buttons, we intercept
+                if (btn.tagName === 'BUTTON') {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        let valid = true;
+                        
+                        // Find inputs. If it's a global save button, find all inputs
+                        const container = btn.closest('.main-content') || document;
+                        const inputs = container.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], select, textarea');
+                        
+                        inputs.forEach(input => {
+                            if (input.type !== 'checkbox' && !input.value.trim()) {
+                                valid = false;
+                                input.style.border = '1px solid red';
+                            } else if (input.type !== 'checkbox') {
+                                input.style.border = '1px solid #ddd';
+                            }
+                        });
+                        
+                        if (valid) {
+                            window.location.href = '404.html';
+                        } else {
+                            alert('Please fill out all required fields before proceeding.');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>

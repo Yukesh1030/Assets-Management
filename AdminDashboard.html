@@ -241,7 +241,7 @@
 
     <!-- MOBILE HEADER -->
     <header class="mobile-header" id="mobileHeader">
-        <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+        <a href="404.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
         <button id="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
     </header>
 
@@ -283,7 +283,7 @@
                     <p>Welcome back, System Administrator &bull; Monday, Sep 7 2026</p>
                 </div>
                 <div>
-                    <a href="AdminClients.html" class="btn btn-primary" style="text-decoration:none;"><i class="fas fa-plus" style="margin-right:8px;"></i>New Account</a>
+                    <a href="404.html" class="btn btn-primary" style="text-decoration:none;"><i class="fas fa-plus" style="margin-right:8px;"></i>New Account</a>
                 </div>
             </div>
 
@@ -313,19 +313,19 @@
 
             <!-- QUICK ACTIONS -->
             <div class="quick-grid" id="quickGrid">
-                <a href="AdminClients.html" class="quick-card">
+                <a href="404.html" class="quick-card">
                     <i class="fas fa-user-plus"></i>
                     <span>Add Client</span>
                 </a>
-                <a href="AdminPortfolios.html" class="quick-card">
+                <a href="404.html" class="quick-card">
                     <i class="fas fa-briefcase"></i>
                     <span>Portfolios</span>
                 </a>
-                <a href="AdminTransactions.html" class="quick-card">
+                <a href="404.html" class="quick-card">
                     <i class="fas fa-exchange-alt"></i>
                     <span>Transactions</span>
                 </a>
-                <a href="AdminAnalytics.html" class="quick-card">
+                <a href="404.html" class="quick-card">
                     <i class="fas fa-chart-bar"></i>
                     <span>Analytics</span>
                 </a>
@@ -413,6 +413,41 @@
         });
         gsap.from('#activityTable', { opacity: 0, y: 30, duration: .7, ease: 'power3.out', delay: .7 });
 
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const saveBtns = document.querySelectorAll('.btn-primary, .action-btn:not(.approve-btn)');
+            saveBtns.forEach(btn => {
+                // If it's a link, we already changed href to 404.html
+                // But for buttons, we intercept
+                if (btn.tagName === 'BUTTON') {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        let valid = true;
+                        
+                        // Find inputs. If it's a global save button, find all inputs
+                        const container = btn.closest('.main-content') || document;
+                        const inputs = container.querySelectorAll('input[type="text"], input[type="number"], input[type="date"], select, textarea');
+                        
+                        inputs.forEach(input => {
+                            if (input.type !== 'checkbox' && !input.value.trim()) {
+                                valid = false;
+                                input.style.border = '1px solid red';
+                            } else if (input.type !== 'checkbox') {
+                                input.style.border = '1px solid #ddd';
+                            }
+                        });
+                        
+                        if (valid) {
+                            window.location.href = '404.html';
+                        } else {
+                            alert('Please fill out all required fields before proceeding.');
+                        }
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
