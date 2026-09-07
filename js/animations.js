@@ -77,10 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Section 02 - Horizontal Scroll
     // ==========================================
     const s2Content = document.querySelector('.s2-content');
+    let horizontalTween;
     if (s2Content) {
         let panels = gsap.utils.toArray(".strategy-panel");
         
-        gsap.to(panels, {
+        horizontalTween = gsap.to(panels, {
             x: () => -(s2Content.scrollWidth - window.innerWidth),
             ease: "none",
             scrollTrigger: {
@@ -91,6 +92,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ==========================================
+    // Flip Reveals
+    // ==========================================
+    gsap.utils.toArray('.gsap-flip').forEach(elem => {
+        const isHorizontal = elem.closest('.s2-horizontal');
+        
+        if (isHorizontal && horizontalTween) {
+            gsap.to(elem, {
+                opacity: 1,
+                rotationX: 0,
+                duration: 1,
+                ease: "back.out(1.5)",
+                scrollTrigger: {
+                    trigger: elem.parentElement,
+                    containerAnimation: horizontalTween,
+                    start: "left 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        } else {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                },
+                opacity: 1,
+                rotationX: 0,
+                duration: 1.2,
+                ease: 'back.out(1.5)'
+            });
+        }
+    });
 
     // ==========================================
     // Section 03 - Investment Process Line

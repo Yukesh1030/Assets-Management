@@ -300,6 +300,7 @@
         /* GSAP Initial States */
         .gsap-reveal { opacity: 0; transform: translateY(30px); }
         .hero-text-line { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); opacity: 0; transform: translateY(50px); }
+        .gsap-flip { opacity: 0; transform: perspective(1500px) rotateX(-90deg); transform-origin: 50% 50%; }
     </style>
 </head>
 <body>
@@ -418,7 +419,7 @@
                     <p class="feature-text">High-conviction portfolios focused on quality businesses with durable competitive advantages and strong capital allocation.</p>
                     <a href="Strategies.html" class="btn btn-outline" style="border-color: #F7F5EF; color: #F7F5EF; margin-top: 32px;">Explore Equities</a>
                 </div>
-                <div class="strategy-visual" style="background-image: url('assets/cover-image-index.webp');"></div>
+                <div class="strategy-visual gsap-flip" style="background-image: url('assets/cover-image-index.webp');"></div>
             </div>
             <!-- Panel 2 -->
             <div class="strategy-panel">
@@ -427,7 +428,7 @@
                     <h2>Fixed Income</h2>
                     <p class="feature-text">Active duration and credit management seeking to provide steady income and capital preservation across environments.</p>
                 </div>
-                <div class="strategy-visual" style="background-image: url('assets/Assest-Allocations.webp');"></div>
+                <div class="strategy-visual gsap-flip" style="background-image: url('assets/Assest-Allocations.webp');"></div>
             </div>
             <!-- Panel 3 -->
             <div class="strategy-panel">
@@ -436,7 +437,7 @@
                     <h2>Private Markets</h2>
                     <p class="feature-text">Direct investments in private equity and credit, capturing illiquidity premiums and partnering with exceptional operators.</p>
                 </div>
-                <div class="strategy-visual" style="background-image: url('assets/Projects.webp');"></div>
+                <div class="strategy-visual gsap-flip" style="background-image: url('assets/Projects.webp');"></div>
             </div>
             <!-- Panel 4 -->
             <div class="strategy-panel">
@@ -445,7 +446,7 @@
                     <h2>Real Assets</h2>
                     <p class="feature-text">Exposure to infrastructure, real estate, and commodities designed to provide inflation protection and yield.</p>
                 </div>
-                <div class="strategy-visual" style="background-image: url('assets/land-assets-management.webp');"></div>
+                <div class="strategy-visual gsap-flip" style="background-image: url('assets/land-assets-management.webp');"></div>
             </div>
             <!-- Panel 5 -->
             <div class="strategy-panel">
@@ -454,7 +455,7 @@
                     <h2>Alternatives</h2>
                     <p class="feature-text">Absolute return strategies seeking uncorrelated alpha to diversify traditional stock and bond portfolios.</p>
                 </div>
-                <div class="strategy-visual" style="background-image: url('assets/Gold-assest-management.webp');"></div>
+                <div class="strategy-visual gsap-flip" style="background-image: url('assets/Gold-assest-management.webp');"></div>
             </div>
         </div>
     </section>
@@ -503,7 +504,7 @@
         <div class="container">
             <h2 class="gsap-reveal">Thinking Beyond a Single Market</h2>
             
-            <div class="map-container mt-8 gsap-reveal">
+            <div class="map-container mt-8 gsap-flip">
                 <div class="map-overlay"></div>
                 <!-- Markers placed roughly -->
                 <div class="marker" style="top: 30%; left: 20%;" title="North America"></div>
@@ -545,7 +546,7 @@
     <!-- SECTION 06 - RISK MANAGEMENT -->
     <section class="section" id="risk">
         <div class="container risk-split">
-            <div class="risk-img gsap-reveal"></div>
+            <div class="risk-img gsap-flip"></div>
             <div class="risk-content">
                 <h2 class="gsap-reveal">Protecting Capital Is Part of Growing It</h2>
                 <div class="mt-8">
@@ -617,7 +618,7 @@
             
             <div class="insights-grid">
                 <div class="insight-card gsap-reveal">
-                    <img src="assets/Assest-related-consuling.webp" alt="Insight 1">
+                    <img src="assets/Assest-related-consuling.webp" alt="Insight 1" class="gsap-flip">
                     <div class="content">
                         <p class="label-text text-gold">Market Perspective</p>
                         <h3 class="mt-2">Understanding today's market environment</h3>
@@ -685,7 +686,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <img src="assets/Brand-logo.webp" alt="STACKLY">
+                    <img src="assets/Brand-logo.webp" alt="STACKLY" class="gsap-flip">
                     <p>Disciplined capital management for the long term.</p>
                 </div>
                 
