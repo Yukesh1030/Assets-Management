@@ -131,11 +131,22 @@
             .mobile-sidebar-toggle {
                 display: block;
             }
+            .mobile-header {
+                position: fixed !important;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: #FAFAFA;
+                z-index: 998;
+                margin: 0 !important;
+                padding: 16px 24px !important;
+                border-bottom: 1px solid #eee;
+            }
             .top-header { flex-direction: column; align-items: flex-start; gap: 16px; }
             .stat-grid { grid-template-columns: 1fr; }
             .grid { grid-template-columns: 1fr !important; }
             .main-content {
-                padding: 24px 16px;
+                padding: 80px 16px 24px 16px !important;
                 margin-left: 0;
             }
         }
