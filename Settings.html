@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--secondary-color);
+            border-right: 1px solid rgba(18, 60, 53, 0.1);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .sidebar-brand {
+            margin-bottom: 48px;
+        }
+        .sidebar-brand img {
+            height: 30px;
+        }
+        
+        .nav-items {
+            list-style: none;
+            flex: 1;
+        }
+        .nav-items li {
+            margin-bottom: 8px;
+        }
+        .nav-items a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        .nav-items a:hover, .nav-items a.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .main-content {
+            flex: 1;
+            background-color: #FAFAFA;
+            padding: 40px;
+            margin-left: 280px;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        .portfolio-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        
+        .allocation-bar {
+            height: 12px;
+            border-radius: 6px;
+            display: flex;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+        
+        .mobile-sidebar-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 991px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                padding: 16px 24px;
+                border-right: none;
+                z-index: 999;
+                display: none;
+            }
+            .sidebar.mobile-open {
+                display: flex;
+            }
+            .sidebar-brand { display: none; }
+            .mobile-sidebar-toggle {
+                display: block;
+            }
+            .top-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr !important; }
+            .main-content {
+                padding: 24px 16px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+            </div>
+            
+            <div class="mobile-close-btn" id="mobileCloseBtn" style="display: none; align-self: flex-end; cursor: pointer; font-size: 24px; margin-bottom: 24px;"><i class="fas fa-times"></i></div>
+            <ul class="nav-items">
+                <li><a href="ClientDashboard.html"><i class="fas fa-wallet"></i> My Portfolio</a></li>
+                <li><a href="Performance.html"><i class="fas fa-chart-line"></i> Performance</a></li>
+                <li><a href="Documents.html"><i class="fas fa-file-alt"></i> Documents</a></li>
+                <li><a href="Funding.html"><i class="fas fa-university"></i> Funding</a></li>
+                <li><a href="AdvisorMessages.html"><i class="fas fa-envelope"></i> Advisor Messages</a></li>
+                <li><a href="Settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div class="mt-auto">
+                <a href="index.html" style="color: var(--primary-color); display: flex; align-items: center; gap: 12px; padding: 12px 16px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Mobile Header -->
+            <div class="mobile-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div class="mobile-sidebar-toggle" id="sidebarToggle">
+                    <span class="material-symbols-outlined">menu</span>
+                </div>
+                <img src="assets/Brand-logo.webp" alt="STACKLY" style="height: 24px; display: none;" id="mobileBrand">
+            </div>
+
+            <!-- SECTION 1: Profile Information -->
+            <div class="top-header gsap-reveal">
+                <div>
+                    <h2>Settings & Preferences</h2>
+                    <p class="text-forest mt-2">Manage your account and profile details</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-save mr-2"></i> Save Changes</button>
+                </div>
+            </div>
+            
+            <div class="grid mt-8" id="section-settings" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div class="portfolio-card gsap-reveal">
+                    <h3>Personal Information</h3>
+                    <div style="margin-top: 24px;">
+                        <label style="display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500;">Full Name</label>
+                        <input type="text" value="John Doe" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 16px; font-family: var(--font-body);">
+                        
+                        <label style="display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500;">Email Address</label>
+                        <input type="email" value="john@example.com" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 16px; font-family: var(--font-body);">
+                        
+                        <label style="display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500;">Phone Number</label>
+                        <input type="tel" value="+1 (555) 123-4567" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 16px; font-family: var(--font-body);">
+                        
+                        <label style="display: block; font-size: 14px; margin-bottom: 8px; font-weight: 500;">Physical Address</label>
+                        <textarea style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-family: var(--font-body); resize: none;" rows="3">123 Financial Way
+Suite 400
+New York, NY 10004</textarea>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: Security & Auth -->
+                <div class="portfolio-card gsap-reveal">
+                    <h3>Security & Authentication</h3>
+                    <div style="margin-top: 24px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 16px; margin-bottom: 16px;">
+                            <div>
+                                <h4 style="margin: 0;">Password</h4>
+                                <p style="font-size: 13px; color: #777; margin-top: 4px;">Last changed 3 months ago</p>
+                            </div>
+                            <button class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Change</button>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 16px; margin-bottom: 16px;">
+                            <div>
+                                <h4 style="margin: 0;">Two-Factor Authentication (2FA)</h4>
+                                <p style="font-size: 13px; color: #777; margin-top: 4px;">Secured via SMS</p>
+                            </div>
+                            <button class="btn btn-outline" style="padding: 8px 16px; font-size: 14px;">Manage</button>
+                        </div>
+                        
+                        <div style="margin-top: 24px;">
+                            <h4 style="margin-bottom: 12px;">Recent Login Activity</h4>
+                            <div style="display: flex; justify-content: space-between; font-size: 13px; color: #555; margin-bottom: 8px;">
+                                <span>Mac OS X - Safari (New York, US)</span>
+                                <span>Today, 10:14 AM</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 13px; color: #555;">
+                                <span>iOS - STACKLY App (New York, US)</span>
+                                <span>Yesterday, 4:30 PM</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Notification Preferences -->
+            <div class="portfolio-card gsap-reveal mt-8">
+                <h3>Notification Preferences</h3>
+                <div class="grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 24px;">
+                    <div>
+                        <h4 style="margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Account Alerts</h4>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Trade Executions
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Margin Calls
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Deposit Confirmations
+                        </label>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Delivery Methods</h4>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Push Notifications
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Email Summaries
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" style="width: 18px; height: 18px;"> SMS Text Alerts
+                        </label>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 8px;">Firm Insights</h4>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Weekly Market Updates
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;"> Webinar Invites
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500;">
+                            <input type="checkbox" style="width: 18px; height: 18px;"> Promotional Offers
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid mt-8 mb-8" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- SECTION 4: Beneficiaries -->
+                <div class="portfolio-card gsap-reveal">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h3 style="margin: 0;">Beneficiaries</h3>
+                        <a href="404.html" style="font-size: 14px; color: var(--primary-color);">+ Add New</a>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 16px; margin-bottom: 16px;">
+                        <div>
+                            <h4 style="margin: 0;">Jane Doe</h4>
+                            <p style="font-size: 13px; color: #777; margin-top: 4px;">Spouse &bull; Primary</p>
+                        </div>
+                        <span style="font-weight: bold; font-size: 18px;">100%</span>
+                    </div>
+                </div>
+
+                <!-- SECTION 5: Account Actions -->
+                <div class="portfolio-card gsap-reveal" style="border: 1px solid rgba(217, 83, 79, 0.2);">
+                    <h3 style="color: #d9534f;">Account Actions</h3>
+                    <p style="font-size: 14px; color: #555; margin-top: 16px; margin-bottom: 24px;">If you wish to transfer your assets out of STACKLY via ACAT, or close your account entirely, please initiate the process below.</p>
+                    <div style="display: flex; gap: 16px;">
+                        <a href="404.html" class="btn btn-outline" style="border-color: #d9534f; color: #d9534f; font-size: 14px;">Initiate ACAT Out</a>
+                        <a href="404.html" class="btn btn-outline" style="border-color: #d9534f; color: #d9534f; font-size: 14px;">Close Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for mobile menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mobileBrand = document.getElementById('mobileBrand');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+
+            if(sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.add('mobile-open');
+                });
+            }
+            if(mobileCloseBtn && sidebar) {
+                mobileCloseBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('mobile-open');
+                });
+            }
+
+            const handleResize = () => {
+                if (window.innerWidth <= 991) {
+                    mobileBrand.style.display = 'block';
+                    mobileCloseBtn.style.display = 'block';
+                } else {
+                    mobileBrand.style.display = 'none';
+                    mobileCloseBtn.style.display = 'none';
+                    sidebar.classList.remove('mobile-open');
+                }
+            };
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

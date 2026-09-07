@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard | STACKLY</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    
+    <style>
+        .dashboard-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background-color: var(--secondary-color);
+            border-right: 1px solid rgba(18, 60, 53, 0.1);
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        
+        .sidebar-brand {
+            margin-bottom: 48px;
+        }
+        .sidebar-brand img {
+            height: 30px;
+        }
+        
+        .nav-items {
+            list-style: none;
+            flex: 1;
+        }
+        .nav-items li {
+            margin-bottom: 8px;
+        }
+        .nav-items a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 4px;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+        .nav-items a:hover, .nav-items a.active {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+        }
+        
+        .main-content {
+            flex: 1;
+            background-color: #FAFAFA;
+            padding: 40px;
+            margin-left: 280px;
+        }
+        
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border-top: 3px solid var(--accent-color);
+        }
+        
+        .portfolio-card {
+            background: #fff;
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+        
+        .allocation-bar {
+            height: 12px;
+            border-radius: 6px;
+            display: flex;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+        
+        .mobile-sidebar-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 991px) {
+            .dashboard-layout {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                padding: 16px 24px;
+                border-right: none;
+                z-index: 999;
+                display: none;
+            }
+            .sidebar.mobile-open {
+                display: flex;
+            }
+            .sidebar-brand { display: none; }
+            .mobile-sidebar-toggle {
+                display: block;
+            }
+            .top-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: 1fr !important; }
+            .main-content {
+                padding: 24px 16px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-layout">
+        <div class="sidebar">
+            <div class="sidebar-brand">
+                <a href="index.html"><img src="assets/Brand-logo.webp" alt="STACKLY"></a>
+            </div>
+            
+            <div class="mobile-close-btn" id="mobileCloseBtn" style="display: none; align-self: flex-end; cursor: pointer; font-size: 24px; margin-bottom: 24px;"><i class="fas fa-times"></i></div>
+            <ul class="nav-items">
+                <li><a href="ClientDashboard.html"><i class="fas fa-wallet"></i> My Portfolio</a></li>
+                <li><a href="Performance.html" class="active"><i class="fas fa-chart-line"></i> Performance</a></li>
+                <li><a href="Documents.html"><i class="fas fa-file-alt"></i> Documents</a></li>
+                <li><a href="Funding.html"><i class="fas fa-university"></i> Funding</a></li>
+                <li><a href="AdvisorMessages.html"><i class="fas fa-envelope"></i> Advisor Messages</a></li>
+                <li><a href="Settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+            
+            <div class="mt-auto">
+                <a href="index.html" style="color: var(--primary-color); display: flex; align-items: center; gap: 12px; padding: 12px 16px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <!-- Mobile Header -->
+            <div class="mobile-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div class="mobile-sidebar-toggle" id="sidebarToggle">
+                    <span class="material-symbols-outlined">menu</span>
+                </div>
+                <img src="assets/Brand-logo.webp" alt="STACKLY" style="height: 24px; display: none;" id="mobileBrand">
+            </div>
+
+            <!-- SECTION 1: Summary Header -->
+            <div class="top-header gsap-reveal">
+                <div>
+                    <h2>Performance</h2>
+                    <p class="text-forest mt-2">Historical returns and benchmarking</p>
+                </div>
+                <div>
+                    <select class="btn btn-outline" style="background: transparent; margin-right: 12px;">
+                        <option>YTD</option>
+                        <option>1 Year</option>
+                        <option>3 Years</option>
+                        <option>Since Inception</option>
+                    </select>
+                    <a href="404.html" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i> Export Report</a>
+                </div>
+            </div>
+            
+            <div class="stat-grid mt-8">
+                <div class="stat-card gsap-reveal">
+                    <p class="label-text">Time-Weighted Return</p>
+                    <h3 class="mt-2 text-gold" style="font-size: 36px;">+8.4%</h3>
+                </div>
+                <div class="stat-card gsap-reveal">
+                    <p class="label-text">Benchmark Return</p>
+                    <h3 class="mt-2 text-forest" style="font-size: 36px;">+6.2%</h3>
+                </div>
+                <div class="stat-card gsap-reveal">
+                    <p class="label-text">Alpha Generation</p>
+                    <h3 class="mt-2 text-forest" style="font-size: 36px;">+2.2%</h3>
+                </div>
+            </div>
+            
+            <!-- SECTION 2: Growth Chart -->
+            <div class="portfolio-card gsap-reveal mt-8">
+                <h3>Portfolio Growth</h3>
+                <div style="height: 350px; background: #f5f7f6; border-radius: 8px; margin-top: 24px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+                    <!-- Mock chart visual -->
+                    <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 60%; background: linear-gradient(0deg, rgba(212,175,55,0.2) 0%, rgba(212,175,55,0) 100%);"></div>
+                    <svg viewBox="0 0 100 40" preserveAspectRatio="none" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 60%;">
+                        <path d="M0 40 L0 30 L10 28 L20 25 L30 27 L40 20 L50 15 L60 18 L70 10 L80 12 L90 5 L100 2 L100 40 Z" fill="rgba(212,175,55,0.3)" />
+                        <path d="M0 30 L10 28 L20 25 L30 27 L40 20 L50 15 L60 18 L70 10 L80 12 L90 5 L100 2" fill="none" stroke="var(--accent-color)" stroke-width="0.5" />
+                    </svg>
+                    <p style="color: #888; position: relative; z-index: 10;">[ Interactive Growth Chart ]</p>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Asset Breakdown -->
+            <div class="portfolio-card gsap-reveal mt-8">
+                <h3>Asset Class Returns (YTD)</h3>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; margin-top: 24px; border-collapse: collapse; min-width: 600px;">
+                        <tr style="border-bottom: 1px solid #eee; text-align: left;">
+                            <th style="padding: 16px 8px;">Asset Class</th>
+                            <th style="padding: 16px 8px;">Allocation</th>
+                            <th style="padding: 16px 8px;">Return</th>
+                            <th style="padding: 16px 8px;">Contribution</th>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 16px 8px; font-weight: 500;">Public Equities</td>
+                            <td style="padding: 16px 8px;">50.0%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+12.4%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+6.2%</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #eee;">
+                            <td style="padding: 16px 8px; font-weight: 500;">Fixed Income</td>
+                            <td style="padding: 16px 8px;">30.0%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+4.1%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+1.2%</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px 8px; font-weight: 500;">Alternatives</td>
+                            <td style="padding: 16px 8px;">15.0%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+6.6%</td>
+                            <td style="padding: 16px 8px; color: #4CAF50;">+1.0%</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: Top Movers -->
+            <div class="grid mt-8" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div class="portfolio-card gsap-reveal">
+                    <h3 style="color: #4CAF50;"><i class="fas fa-arrow-up"></i> Top Contributors</h3>
+                    <div style="margin-top: 16px;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 12px 0;">
+                            <span>Global Tech Fund</span>
+                            <span style="color: #4CAF50; font-weight: bold;">+3.4%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 12px 0;">
+                            <span>Private Credit Mandate</span>
+                            <span style="color: #4CAF50; font-weight: bold;">+1.8%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                            <span>Emerging Markets Equity</span>
+                            <span style="color: #4CAF50; font-weight: bold;">+1.2%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-card gsap-reveal">
+                    <h3 style="color: #d9534f;"><i class="fas fa-arrow-down"></i> Bottom Contributors</h3>
+                    <div style="margin-top: 16px;">
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 12px 0;">
+                            <span>Long Duration Bonds</span>
+                            <span style="color: #d9534f; font-weight: bold;">-1.4%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 12px 0;">
+                            <span>Real Estate Trust</span>
+                            <span style="color: #d9534f; font-weight: bold;">-0.8%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; padding: 12px 0;">
+                            <span>Commodities Index</span>
+                            <span style="color: #d9534f; font-weight: bold;">-0.2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 5: Risk Metrics -->
+            <div class="portfolio-card gsap-reveal mt-8">
+                <h3>Risk Analytics</h3>
+                <div class="grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 24px;">
+                    <div>
+                        <p class="label-text">Volatility (Ann.)</p>
+                        <h4 class="mt-2" style="font-size: 24px;">11.2%</h4>
+                        <p style="font-size: 13px; color: #777;">Benchmark: 13.5%</p>
+                    </div>
+                    <div>
+                        <p class="label-text">Sharpe Ratio</p>
+                        <h4 class="mt-2" style="font-size: 24px;">1.45</h4>
+                        <p style="font-size: 13px; color: #777;">Benchmark: 1.12</p>
+                    </div>
+                    <div>
+                        <p class="label-text">Max Drawdown</p>
+                        <h4 class="mt-2 text-forest" style="font-size: 24px;">-4.2%</h4>
+                        <p style="font-size: 13px; color: #777;">Last 12 Months</p>
+                    </div>
+                    <div>
+                        <p class="label-text">Beta</p>
+                        <h4 class="mt-2" style="font-size: 24px;">0.85</h4>
+                        <p style="font-size: 13px; color: #777;">vs S&P 500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for mobile menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            const mobileBrand = document.getElementById('mobileBrand');
+            const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+
+            if(sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', () => {
+                    sidebar.classList.add('mobile-open');
+                });
+            }
+            if(mobileCloseBtn && sidebar) {
+                mobileCloseBtn.addEventListener('click', () => {
+                    sidebar.classList.remove('mobile-open');
+                });
+            }
+
+            const handleResize = () => {
+                if (window.innerWidth <= 991) {
+                    mobileBrand.style.display = 'block';
+                    mobileCloseBtn.style.display = 'block';
+                } else {
+                    mobileBrand.style.display = 'none';
+                    mobileCloseBtn.style.display = 'none';
+                    sidebar.classList.remove('mobile-open');
+                }
+            };
+            window.addEventListener('resize', handleResize);
+            handleResize();
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

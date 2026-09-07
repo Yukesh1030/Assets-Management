@@ -151,11 +151,11 @@
             
             <div class="mobile-close-btn" id="mobileCloseBtn" style="display: none; align-self: flex-end; cursor: pointer; font-size: 24px; margin-bottom: 24px;"><i class="fas fa-times"></i></div>
             <ul class="nav-items">
-                <li><a href="ClientDashboard.html" class="active"><i class="fas fa-wallet"></i> My Portfolio</a></li>
+                <li><a href="ClientDashboard.html"><i class="fas fa-wallet"></i> My Portfolio</a></li>
                 <li><a href="Performance.html"><i class="fas fa-chart-line"></i> Performance</a></li>
                 <li><a href="Documents.html"><i class="fas fa-file-alt"></i> Documents</a></li>
                 <li><a href="Funding.html"><i class="fas fa-university"></i> Funding</a></li>
-                <li><a href="AdvisorMessages.html"><i class="fas fa-envelope"></i> Advisor Messages</a></li>
+                <li><a href="AdvisorMessages.html" class="active"><i class="fas fa-envelope"></i> Advisor Messages</a></li>
                 <li><a href="Settings.html"><i class="fas fa-cog"></i> Settings</a></li>
             </ul>
             
@@ -173,72 +173,96 @@
                 <img src="assets/Brand-logo.webp" alt="STACKLY" style="height: 24px; display: none;" id="mobileBrand">
             </div>
 
+            <!-- SECTION 1 & 2: Active Thread & Composer -->
             <div class="top-header gsap-reveal">
                 <div>
-                    <h2>Portfolio Overview</h2>
-                    <p class="text-forest mt-2">Welcome back, John Doe</p>
-                </div>
-                <div>
-                    <a href="404.html" class="btn btn-primary"><i class="fas fa-download mr-2"></i> Monthly Statement</a>
+                    <h2>Advisor Messages</h2>
+                    <p class="text-forest mt-2">Direct communication with your wealth team</p>
                 </div>
             </div>
             
-            <div class="stat-grid">
-                <div class="stat-card gsap-reveal">
-                    <p class="label-text">Total Balance</p>
-                    <h3 class="mt-2 text-forest" style="font-size: 36px;">$1,245,600.00</h3>
-                    <p class="mt-2" style="font-size: 13px; color: #4CAF50;"><i class="fas fa-arrow-up"></i> +$12,450 (1.01%) Today</p>
-                </div>
-                <div class="stat-card gsap-reveal">
-                    <p class="label-text">YTD Return</p>
-                    <h3 class="mt-2 text-gold" style="font-size: 36px;">+8.4%</h3>
-                    <p class="mt-2" style="font-size: 13px; color: #777;">Benchmark: +6.2%</p>
-                </div>
-                <div class="stat-card gsap-reveal">
-                    <p class="label-text">Available Cash</p>
-                    <h3 class="mt-2 text-forest" style="font-size: 36px;">$42,100.00</h3>
-                    <p class="mt-2" style="font-size: 13px; color: #777;">Ready for deployment</p>
-                </div>
-            </div>
-            
-            <div class="portfolio-card gsap-reveal">
-                <h3>Asset Allocation</h3>
-                <div class="allocation-bar">
-                    <div style="width: 50%; background: var(--primary-color);" title="Equities"></div>
-                    <div style="width: 30%; background: var(--accent-color);" title="Fixed Income"></div>
-                    <div style="width: 15%; background: #999;" title="Alternatives"></div>
-                    <div style="width: 5%; background: #ccc;" title="Cash"></div>
+            <div class="portfolio-card gsap-reveal mt-8" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+                <div style="padding: 24px; border-bottom: 1px solid #eee; background: #fafafa; display: flex; gap: 16px; align-items: center;">
+                    <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--accent-color); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px;">SJ</div>
+                    <div>
+                        <h4 style="margin: 0; font-size: 18px;">Sarah Jenkins</h4>
+                        <p style="font-size: 13px; color: #777;">Chief Investment Officer</p>
+                    </div>
                 </div>
                 
-                <div class="grid" style="display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 24px;">
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div style="width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%;"></div>
-                            <span style="font-size: 14px; font-weight: 500;">Equities</span>
-                        </div>
-                        <p class="text-forest mt-1">50% ($622,800)</p>
+                <!-- Active Thread -->
+                <div style="padding: 24px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; min-height: 400px;">
+                    <div style="align-self: flex-start; max-width: 80%; background: #f5f7f6; padding: 16px; border-radius: 8px 8px 8px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <p style="margin: 0; line-height: 1.5;">Hi John, I've reviewed your recent deposit. Given the current market volatility, I recommend we deploy this into our short-duration fixed income strategy for the time being. This will protect capital while yielding a solid return. Let me know your thoughts.</p>
+                        <p style="font-size: 11px; color: #777; margin-top: 8px; text-align: right;">Yesterday, 2:30 PM</p>
                     </div>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div style="width: 12px; height: 12px; background: var(--accent-color); border-radius: 50%;"></div>
-                            <span style="font-size: 14px; font-weight: 500;">Fixed Income</span>
-                        </div>
-                        <p class="text-forest mt-1">30% ($373,680)</p>
+                    <div style="align-self: flex-end; max-width: 80%; background: var(--primary-color); color: #fff; padding: 16px; border-radius: 8px 8px 0 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                        <p style="margin: 0; line-height: 1.5;">Thanks Sarah. That sounds like a prudent approach. I'm available Thursday afternoon to discuss this further over a call.</p>
+                        <p style="font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 8px; text-align: right;">Today, 9:15 AM</p>
                     </div>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div style="width: 12px; height: 12px; background: #999; border-radius: 50%;"></div>
-                            <span style="font-size: 14px; font-weight: 500;">Alternatives</span>
+                </div>
+                
+                <!-- Composer -->
+                <div style="padding: 16px 24px; border-top: 1px solid #eee; display: flex; gap: 16px; background: #fff;">
+                    <button class="btn btn-outline" style="padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-paperclip"></i></button>
+                    <input type="text" placeholder="Type a message..." style="flex: 1; padding: 12px 16px; border: 1px solid #ddd; border-radius: 24px; font-family: var(--font-body); outline: none;">
+                    <button class="btn btn-gold" style="padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <div class="grid mt-8" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <!-- SECTION 3: Wealth Team Directory -->
+                <div class="portfolio-card gsap-reveal">
+                    <h3>Your Wealth Team</h3>
+                    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-color); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">SJ</div>
+                            <div>
+                                <h4 style="margin: 0;">Sarah Jenkins</h4>
+                                <p style="font-size: 13px; color: #777;">Primary Advisor</p>
+                            </div>
                         </div>
-                        <p class="text-forest mt-1">15% ($186,840)</p>
-                    </div>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <div style="width: 12px; height: 12px; background: #ccc; border-radius: 50%;"></div>
-                            <span style="font-size: 14px; font-weight: 500;">Cash</span>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary-color); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">MR</div>
+                            <div>
+                                <h4 style="margin: 0;">Michael Rodriguez</h4>
+                                <p style="font-size: 13px; color: #777;">Tax Specialist</p>
+                            </div>
                         </div>
-                        <p class="text-forest mt-1">5% ($62,280)</p>
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: #999; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold;">AK</div>
+                            <div>
+                                <h4 style="margin: 0;">Amanda Kline</h4>
+                                <p style="font-size: 13px; color: #777;">Client Service Associate</p>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <!-- SECTION 4: Scheduled Calls -->
+                <div class="portfolio-card gsap-reveal">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                        <h3 style="margin: 0;">Upcoming Calls</h3>
+                        <a href="404.html" style="font-size: 14px; color: var(--primary-color);">Schedule New</a>
+                    </div>
+                    <div style="background: #f9f9f9; border: 1px solid #eee; padding: 16px; border-radius: 8px; margin-bottom: 16px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                            <span style="font-weight: 500;">Portfolio Review</span>
+                            <span style="color: var(--accent-color); font-weight: bold;">Zoom</span>
+                        </div>
+                        <p style="font-size: 14px; color: #555; margin-bottom: 4px;"><i class="far fa-calendar-alt mr-2"></i> Thursday, September 10, 2026</p>
+                        <p style="font-size: 14px; color: #555;"><i class="far fa-clock mr-2"></i> 2:00 PM - 2:45 PM EST</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: Announcements -->
+            <div class="portfolio-card gsap-reveal mt-8 mb-8" style="background: rgba(212,175,55,0.05); border: 1px solid rgba(212,175,55,0.2);">
+                <h3 style="color: var(--accent-color);"><i class="fas fa-bullhorn mr-2"></i> Firm Announcements</h3>
+                <div style="margin-top: 16px;">
+                    <h4 style="margin-bottom: 4px;">Q3 Market Outlook Webinar</h4>
+                    <p style="font-size: 14px; color: #555; line-height: 1.5;">Join our Chief Investment Office next week for an exclusive webinar detailing our macroeconomic outlook for the fourth quarter. We will cover inflation expectations, interest rate trajectories, and our tactical asset allocation shifts.</p>
+                    <a href="404.html" class="btn btn-outline mt-4" style="padding: 8px 16px; font-size: 14px; border-color: var(--accent-color); color: var(--accent-color);">Register Now</a>
                 </div>
             </div>
         </div>
