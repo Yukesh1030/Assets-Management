@@ -36,3 +36,5 @@
   width: 150px;
   opacity: 0;
 }
+
+.gsap-flip { opacity: 0; transform: perspective(1500px) rotateX(-90deg); transform-origin: 50% 50%; }
