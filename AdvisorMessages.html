@@ -203,7 +203,7 @@
                         <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
                         <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
                     </div></div></div><!-- Active Thread -->
-                <div style="padding: 24px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; min-height: 400px;">
+                <div id="chatThread" style="padding: 24px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; min-height: 400px;">
                     <div style="align-self: flex-start; max-width: 80%; background: #f5f7f6; padding: 16px; border-radius: 8px 8px 8px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                         <p style="margin: 0; line-height: 1.5;">Hi John, I've reviewed your recent deposit. Given the current market volatility, I recommend we deploy this into our short-duration fixed income strategy for the time being. This will protect capital while yielding a solid return. Let me know your thoughts.</p>
                         <p style="font-size: 11px; color: #777; margin-top: 8px; text-align: right;">Yesterday, 2:30 PM</p>
@@ -217,8 +217,8 @@
                 <!-- Composer -->
                 <div style="padding: 16px 24px; border-top: 1px solid #eee; display: flex; gap: 16px; background: #fff;">
                     <button class="btn btn-outline" style="padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-paperclip"></i></button>
-                    <input type="text" placeholder="Type a message..." style="flex: 1; padding: 12px 16px; border: 1px solid #ddd; border-radius: 24px; font-family: var(--font-body); outline: none;">
-                    <button class="btn btn-gold" style="padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-paper-plane"></i></button>
+                    <input id="chatInput" type="text" placeholder="Type a message..." style="flex: 1; padding: 12px 16px; border: 1px solid #ddd; border-radius: 24px; font-family: var(--font-body); outline: none;">
+                    <button id="sendBtn" class="btn btn-gold" style="padding: 12px; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
 
@@ -360,6 +360,69 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendBtn');
+            const chatThread = document.getElementById('chatThread');
 
+            function sendMessage() {
+                const text = chatInput.value.trim();
+                if (!text) return;
+
+                // Format current time (e.g. Today, 10:45 AM)
+                const now = new Date();
+                let hours = now.getHours();
+                let minutes = now.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                const timeString = `Today, ${hours}:${minutes} ${ampm}`;
+
+                // Create message element
+                const msgDiv = document.createElement('div');
+                msgDiv.style.cssText = "align-self: flex-end; max-width: 80%; background: var(--primary-color); color: #fff; padding: 16px; border-radius: 8px 8px 0 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);";
+                
+                const pText = document.createElement('p');
+                pText.style.cssText = "margin: 0; line-height: 1.5;";
+                pText.textContent = text;
+                
+                const pTime = document.createElement('p');
+                pTime.style.cssText = "font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 8px; text-align: right;";
+                pTime.textContent = timeString;
+
+                msgDiv.appendChild(pText);
+                msgDiv.appendChild(pTime);
+
+                // Append and scroll
+                chatThread.appendChild(msgDiv);
+                chatThread.scrollTop = chatThread.scrollHeight;
+
+                // Clear input
+                chatInput.value = '';
+            }
+
+            // Click event on send button
+            if (sendBtn) {
+                // Prevent the global generic form validator from triggering on this button
+                sendBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    sendMessage();
+                });
+            }
+
+            // Enter key event on input field
+            if (chatInput) {
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
