@@ -157,10 +157,11 @@
                     <h2>Clients</h2>
                     <p>Manage all client accounts and KYC status</p>
                 </div>
-                <a href="#" class="btn-primary"><i class="fas fa-user-plus"></i> Add New Client</a>
-            </div>
-
-            <!-- Stats -->
+                <a href="#" class="btn-primary"><i class="fas fa-user-plus"></i> Add New Client</a><div style="display:flex; align-items:center; gap:16px;">
+                    <div class="user-profile-badge" style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 12px 6px 6px; border-radius:24px; border:1px solid #eee; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
+                        <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
+                    </div></div></div><!-- Stats -->
             <div class="stat-row" id="statRow">
                 <div class="mini-stat"><p class="ms-label">Total Clients</p><p class="ms-value">1,248</p></div>
                 <div class="mini-stat"><p class="ms-label">KYC Approved</p><p class="ms-value">1,102</p></div>
@@ -271,5 +272,15 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('stackly_username') || 'Alex Johnson';
+            document.querySelectorAll('.dynamic-username-display').forEach(el => {
+                el.textContent = username;
+            });
+        });
+    </script>
+
 </body>
 </html>

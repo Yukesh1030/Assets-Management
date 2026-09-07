@@ -143,10 +143,11 @@
         <main class="main-content">
             <div class="page-header" id="pageHeader">
                 <div><h2>Analytics</h2><p>Platform-wide performance insights and growth metrics</p></div>
-                <a href="#" class="btn-primary"><i class="fas fa-file-export"></i> Export Report</a>
-            </div>
-
-            <!-- KPIs -->
+                <a href="#" class="btn-primary"><i class="fas fa-file-export"></i> Export Report</a><div style="display:flex; align-items:center; gap:16px;">
+                    <div class="user-profile-badge" style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 12px 6px 6px; border-radius:24px; border:1px solid #eee; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
+                        <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
+                    </div></div></div><!-- KPIs -->
             <div class="kpi-row" id="kpiRow">
                 <div class="kpi-card"><p class="kpi-label">AUM Growth (YTD)</p><p class="kpi-val">+$412M</p><p class="kpi-delta up"><i class="fas fa-arrow-up"></i> 10.9% vs last year</p></div>
                 <div class="kpi-card"><p class="kpi-label">Avg Client Return</p><p class="kpi-val">+11.4%</p><p class="kpi-delta up"><i class="fas fa-arrow-up"></i> 2.1% above benchmark</p></div>
@@ -356,5 +357,15 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('stackly_username') || 'Alex Johnson';
+            document.querySelectorAll('.dynamic-username-display').forEach(el => {
+                el.textContent = username;
+            });
+        });
+    </script>
+
 </body>
 </html>

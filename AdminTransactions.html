@@ -154,10 +154,11 @@
                 <div class="mini-stat"><p class="ms-label">Total Volume (MTD)</p><p class="ms-value">$284M</p></div>
                 <div class="mini-stat"><p class="ms-label">Completed</p><p class="ms-value">1,402</p></div>
                 <div class="mini-stat"><p class="ms-label">Pending Approval</p><p class="ms-value" style="color:#ef6c00;">42</p></div>
-                <div class="mini-stat"><p class="ms-label">Rejected</p><p class="ms-value" style="color:#c62828;">7</p></div>
-            </div>
-
-            <!-- Volume Summary -->
+                <div class="mini-stat"><p class="ms-label">Rejected</p><p class="ms-value" style="color:#c62828;">7</p></div><div style="display:flex; align-items:center; gap:16px;">
+                    <div class="user-profile-badge" style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 12px 6px 6px; border-radius:24px; border:1px solid #eee; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
+                        <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
+                    </div></div></div><!-- Volume Summary -->
             <div class="summary-bar" id="summaryBar">
                 <div class="sum-card">
                     <div class="sum-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fas fa-arrow-down"></i></div>
@@ -264,5 +265,15 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('stackly_username') || 'Alex Johnson';
+            document.querySelectorAll('.dynamic-username-display').forEach(el => {
+                el.textContent = username;
+            });
+        });
+    </script>
+
 </body>
 </html>

@@ -198,10 +198,11 @@
                         <option>Since Inception</option>
                     </select>
                     <a href="404.html" class="btn btn-primary"><i class="fas fa-file-pdf mr-2"></i> Export Report</a>
-                </div>
-            </div>
-            
-            <div class="stat-grid mt-8">
+                </div><div style="display:flex; align-items:center; gap:16px;">
+                    <div class="user-profile-badge" style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 12px 6px 6px; border-radius:24px; border:1px solid #eee; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
+                        <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
+                    </div></div></div><div class="stat-grid mt-8">
                 <div class="stat-card gsap-reveal">
                     <p class="label-text">Time-Weighted Return</p>
                     <h3 class="mt-2 text-gold" style="font-size: 36px;">+8.4%</h3>
@@ -401,5 +402,15 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('stackly_username') || 'Alex Johnson';
+            document.querySelectorAll('.dynamic-username-display').forEach(el => {
+                el.textContent = username;
+            });
+        });
+    </script>
+
 </body>
 </html>

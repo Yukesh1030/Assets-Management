@@ -198,10 +198,11 @@
                     <div>
                         <h4 style="margin: 0; font-size: 18px;">Sarah Jenkins</h4>
                         <p style="font-size: 13px; color: #777;">Chief Investment Officer</p>
-                    </div>
-                </div>
-                
-                <!-- Active Thread -->
+                    </div><div style="display:flex; align-items:center; gap:16px;">
+                    <div class="user-profile-badge" style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 12px 6px 6px; border-radius:24px; border:1px solid #eee; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                        <div style="width:32px; height:32px; border-radius:50%; background:#1A3C34; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><i class="fas fa-user"></i></div>
+                        <span class="dynamic-username-display" style="font-size:13px; font-weight:600; color:#333;">User</span>
+                    </div></div></div><!-- Active Thread -->
                 <div style="padding: 24px; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; min-height: 400px;">
                     <div style="align-self: flex-start; max-width: 80%; background: #f5f7f6; padding: 16px; border-radius: 8px 8px 8px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
                         <p style="margin: 0; line-height: 1.5;">Hi John, I've reviewed your recent deposit. Given the current market volatility, I recommend we deploy this into our short-duration fixed income strategy for the time being. This will protect capital while yielding a solid return. Let me know your thoughts.</p>
@@ -350,5 +351,15 @@
             });
         });
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('stackly_username') || 'Alex Johnson';
+            document.querySelectorAll('.dynamic-username-display').forEach(el => {
+                el.textContent = username;
+            });
+        });
+    </script>
+
 </body>
 </html>

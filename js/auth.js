@@ -42,6 +42,11 @@ function handleLoginSubmit(event) {
     });
     
     if (isValid) {
+        // Extract a dynamic name from the email (e.g., john.doe@example.com -> John Doe)
+        let namePart = email.value.split('@')[0];
+        let dynamicName = namePart.split(/[\.\-_]/).map(n => n.charAt(0).toUpperCase() + n.slice(1)).join(' ');
+        localStorage.setItem('stackly_username', dynamicName);
+
         if (type === 'Admin') {
             window.location.href = 'AdminDashboard.html';
         } else {
