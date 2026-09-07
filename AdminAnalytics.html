@@ -157,17 +157,8 @@
             <!-- AUM Growth Chart -->
             <div class="chart-area" id="aumChart">
                 <h3>AUM Growth — Monthly (2026)</h3>
-                <div class="chart-canvas">
-                    <div class="bar" style="height:55%;" title="Mar: $3.6B"></div>
-                    <div class="bar" style="height:60%;" title="Apr: $3.7B"></div>
-                    <div class="bar" style="height:65%;" title="May: $3.8B"></div>
-                    <div class="bar" style="height:70%;" title="Jun: $3.85B"></div>
-                    <div class="bar" style="height:72%;" title="Jul: $3.9B"></div>
-                    <div class="bar" style="height:78%;" title="Aug: $4.0B"></div>
-                    <div class="bar bar-gold" style="height:85%;" title="Sep: $4.2B"></div>
-                </div>
-                <div class="chart-labels">
-                    <span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span>
+                <div class="chart-container" style="position: relative; height:250px; width:100%">
+                    <canvas id="aumChartCanvas"></canvas>
                 </div>
             </div>
 
@@ -261,6 +252,106 @@
                             alert('Please fill out all required fields before proceeding.');
                         }
                     });
+                }
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('aumChartCanvas').getContext('2d');
+            
+            // Gradient for regular bars
+            const greenGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            greenGradient.addColorStop(0, '#1A3C34');
+            greenGradient.addColorStop(1, '#2d5a4a');
+
+            // Gradient for gold bar
+            const goldGradient = ctx.createLinearGradient(0, 0, 0, 400);
+            goldGradient.addColorStop(0, '#C9A84C');
+            goldGradient.addColorStop(1, '#e0b96a');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    datasets: [{
+                        label: 'AUM ($ Billions)',
+                        data: [3.6, 3.7, 3.8, 3.85, 3.9, 4.0, 4.2],
+                        backgroundColor: [
+                            greenGradient, greenGradient, greenGradient, greenGradient, greenGradient, greenGradient, goldGradient
+                        ],
+                        borderRadius: {
+                            topLeft: 4,
+                            topRight: 4,
+                            bottomLeft: 0,
+                            bottomRight: 0
+                        },
+                        borderSkipped: false,
+                        barPercentage: 0.6,
+                        categoryPercentage: 0.8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return '$' + context.parsed.y + 'B';
+                                }
+                            },
+                            backgroundColor: '#1A3C34',
+                            titleFont: { family: "'Inter', sans-serif", size: 13 },
+                            bodyFont: { family: "'Inter', sans-serif", size: 14, weight: 'bold' },
+                            padding: 10,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 3.0,
+                            max: 4.5,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'B';
+                                },
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 11
+                                },
+                                color: '#888'
+                            },
+                            border: { display: false },
+                            grid: {
+                                color: '#f0f0f0',
+                                drawBorder: false
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                },
+                                color: '#555'
+                            },
+                            border: { display: false }
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    }
                 }
             });
         });
