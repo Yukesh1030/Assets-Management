@@ -112,6 +112,37 @@
             margin-right: 16px;
             font-family: var(--font-body);
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .featured-insight {
+                flex-direction: column;
+                gap: 32px;
+                margin-bottom: 40px;
+            }
+            .featured-img {
+                height: 300px;
+                width: 100%;
+            }
+            .article-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .newsletter-box {
+                padding: 32px 16px;
+            }
+            .newsletter-box form {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .newsletter-box input {
+                width: 100%;
+                margin-right: 0;
+            }
+            .newsletter-box button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -162,24 +193,8 @@
         </div>
     </section>
 
-    <div class="container mt-8">
-        <div class="filter-bar gsap-reveal">
-            <div class="filter-tabs">
-                <div class="filter-tab active">All Insights</div>
-                <div class="filter-tab">Market Perspectives</div>
-                <div class="filter-tab">Investment Research</div>
-                <div class="filter-tab">Portfolio Thinking</div>
-                <div class="filter-tab">Risk & Markets</div>
-            </div>
-            <div class="search-box">
-                <i class="fas fa-search text-gold"></i>
-                <input type="text" placeholder="Search insights...">
-            </div>
-        </div>
-    </div>
-
     <!-- 01 - FEATURED INSIGHT -->
-    <section class="section" style="padding-top: 0;">
+    <section class="section">
         <div class="container">
             <div class="featured-insight">
                 <div class="featured-img gsap-reveal img-zoom-container">
