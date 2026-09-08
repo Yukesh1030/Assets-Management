@@ -301,6 +301,120 @@
         .gsap-reveal { opacity: 0; transform: translateY(30px); }
         .hero-text-line { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%); opacity: 0; transform: translateY(50px); }
         .gsap-flip { opacity: 0; transform: perspective(1500px) rotateX(-90deg); transform-origin: 50% 50%; }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .strategy-panel {
+                width: 600px;
+                padding: 30px;
+                height: 400px;
+            }
+            .s2-content {
+                gap: 40px;
+                padding: 0 5vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-graph {
+                display: none;
+            }
+            .floating-card {
+                position: relative;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                margin-top: 40px;
+                width: 100%;
+                max-width: 320px;
+            }
+            .s1-pillars {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .s2-horizontal {
+                height: auto;
+                display: block;
+                padding: 60px 0;
+            }
+            .s2-content {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+                gap: 40px;
+            }
+            .strategy-panel {
+                width: 100%;
+                height: auto;
+                flex-direction: column;
+                padding: 24px;
+            }
+            .strategy-visual {
+                height: 250px;
+                width: 100%;
+            }
+            .process-steps {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+            .step {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                text-align: left;
+            }
+            .process-line {
+                display: none;
+            }
+            .risk-split {
+                flex-direction: column;
+            }
+            .risk-img {
+                width: 100%;
+                height: 300px;
+                order: -1;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .dash-card.wide {
+                grid-column: span 1;
+            }
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+            .trust-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .final-cta h2 {
+                font-size: 48px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-cta {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .hero-cta .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .final-cta .flex {
+                flex-direction: column;
+            }
+            .final-cta .flex .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>

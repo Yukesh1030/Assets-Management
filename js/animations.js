@@ -78,20 +78,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     const s2Content = document.querySelector('.s2-content');
     let horizontalTween;
-    if (s2Content) {
-        let panels = gsap.utils.toArray(".strategy-panel");
-        
-        horizontalTween = gsap.to(panels, {
-            x: () => -(s2Content.scrollWidth - window.innerWidth),
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".s2-horizontal",
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + (s2Content.scrollWidth - window.innerWidth)
-            }
-        });
-    }
+    
+    let mm = gsap.matchMedia();
+    mm.add("(min-width: 769px)", () => {
+        if (s2Content) {
+            let panels = gsap.utils.toArray(".strategy-panel");
+            
+            horizontalTween = gsap.to(panels, {
+                x: () => -(s2Content.scrollWidth - window.innerWidth),
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".s2-horizontal",
+                    pin: true,
+                    scrub: 1,
+                    end: () => "+=" + (s2Content.scrollWidth - window.innerWidth)
+                }
+            });
+        }
+    });
 
     // ==========================================
     // Flip Reveals
