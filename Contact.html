@@ -84,6 +84,31 @@
             margin-top: 16px;
             color: rgba(18, 60, 53, 0.8);
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            form .grid[style] {
+                grid-template-columns: 1fr !important;
+            }
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .section > .container.grid[style] {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+            .contact-form[style] {
+                padding: 24px !important;
+            }
+            .hero-headline[style] {
+                font-size: 36px !important;
+            }
+        }
     </style>
 </head>
 <body>
