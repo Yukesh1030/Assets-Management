@@ -54,6 +54,40 @@
             transition: filter 0.3s ease;
         }
         .team-card:hover img { filter: grayscale(0%); }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .timeline-line { left: 16px; transform: none; }
+            .timeline-item { width: 100%; padding: 20px 0 20px 48px; }
+            .timeline-item.left { text-align: left; }
+            .timeline-item.right { left: 0; }
+            .timeline-dot { left: 9px !important; right: auto !important; top: 30px; }
+            
+            .team-grid { grid-template-columns: 1fr; gap: 32px; }
+            
+            /* Specific overrides for sections */
+            section > .container.flex {
+                flex-direction: column;
+                text-align: center;
+                gap: 32px !important;
+            }
+            section > .container.flex > div {
+                width: 100%;
+            }
+            
+            /* Principles Grid */
+            .grid[style*="repeat(2"] {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+                margin-top: 32px !important;
+            }
+            .border-left {
+                border-left: none !important;
+                border-top: 2px solid var(--accent-color);
+                padding-left: 0 !important;
+                padding-top: 24px;
+            }
+        }
     </style>
 </head>
 <body>
