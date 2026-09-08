@@ -359,3 +359,12 @@ a:hover {
 
 /* Utilities */
 .text-center { text-align: center !important; }
+
+/* Dashboard Sidebar Scrollbar Hiding */
+.sidebar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
